@@ -44,7 +44,21 @@ class LoginViewController: UIViewController {
   
   // MARK: Actions
   @IBAction func loginDidTouch(_ sender: AnyObject) {
-    performSegue(withIdentifier: loginToList, sender: nil)
+    guard
+      let email = textFieldLoginEmail.text,
+      let password = textFieldLoginPassword.text,
+      email.count > 0,
+      password.count > 0
+    else { return }
+    
+    Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+      if let error = error, user == nil {
+        let alert = UIAlertController(title: "Sign In Failed", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+      }
+    }
+//    performSegue(withIdentifier: loginToList, sender: nil)
   }
   
   @IBAction func signUpDidTouch(_ sender: AnyObject) {
@@ -53,6 +67,14 @@ class LoginViewController: UIViewController {
                                   preferredStyle: .alert)
     
     let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+      
+      if let email = alert.textFields?[0].text, let password = alert.textFields?[1].text {
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+          if error == nil {
+            Auth.auth().signIn(withEmail: email, password: password)
+          }
+        }
+      }
     }
     
     let cancelAction = UIAlertAction(title: "Cancel",
