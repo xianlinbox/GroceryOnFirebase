@@ -44,7 +44,6 @@ class OnlineUsersTableViewController: UITableViewController {
   // MARK: UIViewController Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    currentUsers.append("hungry@person.food")
   }
   
   // MARK: UITableView Delegate methods
@@ -63,6 +62,19 @@ class OnlineUsersTableViewController: UITableViewController {
   // MARK: Actions
   
   @IBAction func signoutButtonPressed(_ sender: AnyObject) {
-    dismiss(animated: true, completion: nil)
+    let user = Auth.auth().currentUser!
+    let onlineRef = Database.database().reference(withPath: "online/\(user.uid)")
+    onlineRef.removeValue { (error, _) in
+      if let err = error {
+        print("removing online failed:\(err)")
+        return
+      }
+      do {
+        try Auth.auth().signOut()
+        self.dismiss(animated: true, completion: nil)
+      } catch (let error) {
+        print("Sign out failed:\(error)")
+      }
+    }
   }
 }

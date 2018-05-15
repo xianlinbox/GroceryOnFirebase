@@ -30,7 +30,6 @@ class GroceryListTableViewController: UITableViewController {
     userCountBarButtonItem.tintColor = UIColor.white
     navigationItem.leftBarButtonItem = userCountBarButtonItem
     
-    user = User(uid: "FakeId", email: "hungry@person.food")
     ref.queryOrdered(byChild: "completed").observe(.value) { (snapshot) in
       var newItems:[GroceryItem] = []
       for child in snapshot.children {
