@@ -33,6 +33,7 @@ class OnlineUsersTableViewController: UITableViewController {
   
   // MARK: Constants
   let userCell = "UserCell"
+  let usersRef = Database.database().reference(withPath: "online")
   
   // MARK: Properties
   var currentUsers: [String] = []
@@ -44,6 +45,13 @@ class OnlineUsersTableViewController: UITableViewController {
   // MARK: UIViewController Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    usersRef.observe(.childAdded) { (snapshot) in
+      guard let email = snapshot.value as? String else { return }
+      self.currentUsers.append(email)
+      let row = self.currentUsers.count - 1
+      let indexPath = IndexPath(row: row, section: 0)
+      self.tableView.insertRows(at: [indexPath], with: .top)
+    }
   }
   
   // MARK: UITableView Delegate methods

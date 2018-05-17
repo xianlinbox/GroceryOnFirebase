@@ -6,6 +6,7 @@ class GroceryListTableViewController: UITableViewController {
   // MARK: Constants
   let listToUsers = "ListToUsers"
   let ref = Database.database().reference(withPath: "grocery-items")
+  let usersRef = Database.database().reference(withPath: "online")
   // MARK: Properties
   var items: [GroceryItem] = []
   var user: User!
@@ -44,6 +45,13 @@ class GroceryListTableViewController: UITableViewController {
     Auth.auth().addStateDidChangeListener { auth, user in
       guard let user = user else { return }
       self.user = User(authData: user)
+      let currentUserRef = self.usersRef.child(self.user.uid)
+      currentUserRef.setValue(self.user.email)
+      currentUserRef.onDisconnectRemoveValue()
+    }
+    
+    usersRef.observe(.value) { (snapshot) in
+      self.userCountBarButtonItem.title = snapshot.exists() ? snapshot.childrenCount.description : "0"
     }
   }
   // MARK: UITableView Delegate methods
