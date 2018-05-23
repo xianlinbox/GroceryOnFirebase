@@ -18,6 +18,7 @@
 		649F422820438D5400B21997 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 649F422720438D5400B21997 /* Main.storyboard */; };
 		95F65799424252A5A9C5A1C7 /* libPods-Grocr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9329CDD67FBDDC24EC3B34C8 /* libPods-Grocr.a */; };
 		DFBCC6EA20A3DD5600B50164 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFBCC6E920A3DD5600B50164 /* GoogleService-Info.plist */; };
+		DFC3A35C20B5113A0043FED2 /* RemoteConfigValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC3A35B20B5113A0043FED2 /* RemoteConfigValues.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		9329CDD67FBDDC24EC3B34C8 /* libPods-Grocr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Grocr.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1787A820A64FCA00270332 /* Grocr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Grocr.entitlements; sourceTree = "<group>"; };
 		DFBCC6E920A3DD5600B50164 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DFC3A35B20B5113A0043FED2 /* RemoteConfigValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigValues.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				645D78A0204344160093B00C /* LaunchScreen.storyboard */,
 				645D78A3204344160093B00C /* Info.plist */,
 				DFBCC6E920A3DD5600B50164 /* GoogleService-Info.plist */,
+				DFC3A35B20B5113A0043FED2 /* RemoteConfigValues.swift */,
 			);
 			path = Grocr;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFC3A35C20B5113A0043FED2 /* RemoteConfigValues.swift in Sources */,
 				649F422020438D1B00B21997 /* LoginViewController.swift in Sources */,
 				649F422120438D1B00B21997 /* OnlineUsersTableViewController.swift in Sources */,
 				649F422520438D2E00B21997 /* User.swift in Sources */,
