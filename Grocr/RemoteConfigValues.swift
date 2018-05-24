@@ -12,6 +12,7 @@ class RemoteConfigValues {
   
   init() {
     loadValues()
+     fetchCloudValues()
   }
   
   private func loadValues() {
@@ -19,6 +20,17 @@ class RemoteConfigValues {
       "themeColor":"#FBB03B"
     ]
     RemoteConfig.remoteConfig().setDefaults(appDefaults as [String:NSObject])
+  }
+  
+  fileprivate func fetchCloudValues() {
+    let fetchDuration:TimeInterval = 0
     
+    RemoteConfig.remoteConfig().fetch(withExpirationDuration: fetchDuration) { (status, error) in
+      if let error = error {
+        print("whoops! Something is wrong!")
+        return
+      }
+      RemoteConfig.remoteConfig().activateFetched()
+    }
   }
 }
